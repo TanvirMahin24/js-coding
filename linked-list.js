@@ -42,11 +42,43 @@ class LinkedList {
       tmp = tmp.next;
     }
   }
+
+  removeNodeFromNthPosition(n) {
+    n--;
+    let current = this.head;
+    let count = 0;
+    while (current) {
+      // if list has no element
+      if (this.head === null) {
+        break;
+      } else if (this.head.next === null && n === 0) {
+        head = null;
+      } else if (n === 0) {
+        this.head = this.head.next;
+        break;
+      } else {
+        if (count === n) {
+          if (current.next !== null) {
+            current.next = current.next.next;
+            break;
+          } else {
+            current = null;
+            break;
+          }
+        }
+      }
+      count++;
+      current = current.next;
+    }
+  }
 }
 
 const ll = new LinkedList();
 ll.insertFirst(10);
 ll.insertFirst(20);
-ll.insertLast(50);
-
+//  ll.insertLast(50);
+//  ll.insertLast(80);
+// ll.insertLast(5);
+ll.printList();
+ll.removeNodeFromNthPosition(1);
 ll.printList();
